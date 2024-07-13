@@ -6,111 +6,109 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.giocodelloca.Controller">
-    <GridPane fx:id="boardGrid" gridLinesVisible="true" layoutX="20.0" layoutY="20.0" prefHeight="700.0"
-              prefWidth="900.0">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.giocodelloca.MainController">
+    <GridPane fx:id="boardGrid" gridLinesVisible="true" layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="900.0">
         <!-- Caselle del tabellone -->
         <!-- Riga 1 -->
-        <Label fx:id="cell1" text="1" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <Label fx:id="cell2" text="2" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-        <Label fx:id="cell3" text="3" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-        <Label fx:id="cell4" text="4" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-        <Label fx:id="cell5" text="5" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-        <Label fx:id="cell6" text="6" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
-        <Label fx:id="cell7" text="7" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
-        <Label fx:id="cell8" text="8" GridPane.columnIndex="7" GridPane.rowIndex="0"/>
-        <Label fx:id="cell9" text="9" GridPane.columnIndex="8" GridPane.rowIndex="0"/>
+        <Label fx:id="cell1" text="1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="cell2" text="2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label fx:id="cell3" text="3" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="cell4" text="4" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label fx:id="cell5" text="5" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+        <Label fx:id="cell6" text="6" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+        <Label fx:id="cell7" text="7" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+        <Label fx:id="cell8" text="8" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+        <Label fx:id="cell9" text="9" GridPane.columnIndex="8" GridPane.rowIndex="0" />
         <!-- Riga 2 -->
-        <Label fx:id="cell10" text="10" GridPane.columnIndex="8" GridPane.rowIndex="1"/>
-        <Label fx:id="cell11" text="11" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
-        <Label fx:id="cell12" text="12" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
-        <Label fx:id="cell13" text="13" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
-        <Label fx:id="cell14" text="14" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-        <Label fx:id="cell15" text="15" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-        <Label fx:id="cell16" text="16" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <Label fx:id="cell17" text="17" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Label fx:id="cell18" text="18" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label fx:id="cell10" text="10" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+        <Label fx:id="cell11" text="11" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+        <Label fx:id="cell12" text="12" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+        <Label fx:id="cell13" text="13" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+        <Label fx:id="cell14" text="14" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        <Label fx:id="cell15" text="15" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label fx:id="cell16" text="16" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label fx:id="cell17" text="17" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="cell18" text="18" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <!-- Riga 3 -->
-        <Label fx:id="cell19" text="19" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <Label fx:id="cell20" text="20" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <Label fx:id="cell21" text="21" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-        <Label fx:id="cell22" text="22" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-        <Label fx:id="cell23" text="23" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-        <Label fx:id="cell24" text="24" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
-        <Label fx:id="cell25" text="25" GridPane.columnIndex="6" GridPane.rowIndex="2"/>
-        <Label fx:id="cell26" text="26" GridPane.columnIndex="7" GridPane.rowIndex="2"/>
-        <Label fx:id="cell27" text="27" GridPane.columnIndex="8" GridPane.rowIndex="2"/>
+        <Label fx:id="cell19" text="19" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="cell20" text="20" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label fx:id="cell21" text="21" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Label fx:id="cell22" text="22" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Label fx:id="cell23" text="23" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+        <Label fx:id="cell24" text="24" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+        <Label fx:id="cell25" text="25" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+        <Label fx:id="cell26" text="26" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+        <Label fx:id="cell27" text="27" GridPane.columnIndex="8" GridPane.rowIndex="2" />
         <!-- Riga 4 -->
-        <Label fx:id="cell28" text="28" GridPane.columnIndex="8" GridPane.rowIndex="3"/>
-        <Label fx:id="cell29" text="29" GridPane.columnIndex="7" GridPane.rowIndex="3"/>
-        <Label fx:id="cell30" text="30" GridPane.columnIndex="6" GridPane.rowIndex="3"/>
-        <Label fx:id="cell31" text="31" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
-        <Label fx:id="cell32" text="32" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
-        <Label fx:id="cell33" text="33" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
-        <Label fx:id="cell34" text="34" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-        <Label fx:id="cell35" text="35" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Label fx:id="cell36" text="36" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Label fx:id="cell28" text="28" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+        <Label fx:id="cell29" text="29" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+        <Label fx:id="cell30" text="30" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+        <Label fx:id="cell31" text="31" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+        <Label fx:id="cell32" text="32" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+        <Label fx:id="cell33" text="33" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        <Label fx:id="cell34" text="34" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Label fx:id="cell35" text="35" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label fx:id="cell36" text="36" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <!-- Riga 5 -->
-        <Label fx:id="cell37" text="37" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <Label fx:id="cell38" text="38" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-        <Label fx:id="cell39" text="39" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-        <Label fx:id="cell40" text="40" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
-        <Label fx:id="cell41" text="41" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
-        <Label fx:id="cell42" text="42" GridPane.columnIndex="5" GridPane.rowIndex="4"/>
-        <Label fx:id="cell43" text="43" GridPane.columnIndex="6" GridPane.rowIndex="4"/>
-        <Label fx:id="cell44" text="44" GridPane.columnIndex="7" GridPane.rowIndex="4"/>
-        <Label fx:id="cell45" text="45" GridPane.columnIndex="8" GridPane.rowIndex="4"/>
+        <Label fx:id="cell37" text="37" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Label fx:id="cell38" text="38" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label fx:id="cell39" text="39" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Label fx:id="cell40" text="40" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+        <Label fx:id="cell41" text="41" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+        <Label fx:id="cell42" text="42" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+        <Label fx:id="cell43" text="43" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+        <Label fx:id="cell44" text="44" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+        <Label fx:id="cell45" text="45" GridPane.columnIndex="8" GridPane.rowIndex="4" />
         <!-- Riga 6 -->
-        <Label fx:id="cell46" text="46" GridPane.columnIndex="8" GridPane.rowIndex="5"/>
-        <Label fx:id="cell47" text="47" GridPane.columnIndex="7" GridPane.rowIndex="5"/>
-        <Label fx:id="cell48" text="48" GridPane.columnIndex="6" GridPane.rowIndex="5"/>
-        <Label fx:id="cell49" text="49" GridPane.columnIndex="5" GridPane.rowIndex="5"/>
-        <Label fx:id="cell50" text="50" GridPane.columnIndex="4" GridPane.rowIndex="5"/>
-        <Label fx:id="cell51" text="51" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
-        <Label fx:id="cell52" text="52" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-        <Label fx:id="cell53" text="53" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-        <Label fx:id="cell54" text="54" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <Label fx:id="cell46" text="46" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+        <Label fx:id="cell47" text="47" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+        <Label fx:id="cell48" text="48" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+        <Label fx:id="cell49" text="49" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+        <Label fx:id="cell50" text="50" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+        <Label fx:id="cell51" text="51" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+        <Label fx:id="cell52" text="52" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <Label fx:id="cell53" text="53" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Label fx:id="cell54" text="54" GridPane.columnIndex="0" GridPane.rowIndex="5" />
         <!-- Riga 7 -->
-        <Label fx:id="cell55" text="55" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-        <Label fx:id="cell56" text="56" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-        <Label fx:id="cell57" text="57" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
-        <Label fx:id="cell58" text="58" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
-        <Label fx:id="cell59" text="59" GridPane.columnIndex="4" GridPane.rowIndex="6"/>
-        <Label fx:id="cell60" text="60" GridPane.columnIndex="5" GridPane.rowIndex="6"/>
-        <Label fx:id="cell61" text="61" GridPane.columnIndex="6" GridPane.rowIndex="6"/>
-        <Label fx:id="cell62" text="62" GridPane.columnIndex="7" GridPane.rowIndex="6"/>
-        <Label fx:id="cell63" text="63" GridPane.columnIndex="8" GridPane.rowIndex="6"/>
+        <Label fx:id="cell55" text="55" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <Label fx:id="cell56" text="56" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Label fx:id="cell57" text="57" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+        <Label fx:id="cell58" text="58" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+        <Label fx:id="cell59" text="59" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+        <Label fx:id="cell60" text="60" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+        <Label fx:id="cell61" text="61" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+        <Label fx:id="cell62" text="62" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+        <Label fx:id="cell63" text="63" GridPane.columnIndex="8" GridPane.rowIndex="6" />
 
         <columnConstraints>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
-            <ColumnConstraints prefWidth="100.0"/>
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
+            <ColumnConstraints prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints prefHeight="100.0"/>
-            <RowConstraints prefHeight="100.0"/>
-            <RowConstraints prefHeight="100.0"/>
-            <RowConstraints prefHeight="100.0"/>
-            <RowConstraints prefHeight="100.0"/>
-            <RowConstraints prefHeight="100.0"/>
-            <RowConstraints prefHeight="100.0"/>
+            <RowConstraints prefHeight="100.0" />
+            <RowConstraints prefHeight="100.0" />
+            <RowConstraints prefHeight="100.0" />
+            <RowConstraints prefHeight="100.0" />
+            <RowConstraints prefHeight="100.0" />
+            <RowConstraints prefHeight="100.0" />
+            <RowConstraints prefHeight="100.0" />
         </rowConstraints>
     </GridPane>
-    <Button fx:id="rollButton" layoutX="988.0" layoutY="40.0" mnemonicParsing="false" onAction="#rollDice"
-            prefHeight="88.0" prefWidth="247.0" text="Lancia Dado"/>
-    <Label fx:id="diceResultLabel" layoutX="1037.0" layoutY="128.0" prefHeight="75.0" prefWidth="151.0"
-           text="Risultato del dado: "/>
-    <Label fx:id="cellEffectLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1002.0" layoutY="356.0"
-           prefHeight="175.0" prefWidth="220.0" text="Effetto della casella: " textAlignment="CENTER"/>
-    <Circle fx:id="player1" fill="BLUE" layoutX="40.0" layoutY="40.0" radius="10.0"/>
-    <Circle fx:id="player2" fill="RED" layoutX="60.0" layoutY="40.0" radius="10.0"/>
+    <Button fx:id="rollButton" layoutX="989.0" layoutY="183.0" mnemonicParsing="false" onAction="#rollDice" prefHeight="88.0" prefWidth="247.0" text="Lancia Dado" />
+    <Label fx:id="diceResultLabel" layoutX="1037.0" layoutY="271.0" prefHeight="75.0" prefWidth="151.0" text="Risultato del dado: " />
+    <Label fx:id="cellEffectLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1002.0" layoutY="356.0" prefHeight="175.0" prefWidth="220.0" text="Effetto della casella: " textAlignment="CENTER" />
+   <Label fx:id="turnLabel" layoutX="987.0" layoutY="28.0" prefHeight="56.0" prefWidth="247.0" text="Tocca a:" textFill="RED">
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font>
+   </Label>
 </AnchorPane>
