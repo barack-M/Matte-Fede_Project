@@ -5,7 +5,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 

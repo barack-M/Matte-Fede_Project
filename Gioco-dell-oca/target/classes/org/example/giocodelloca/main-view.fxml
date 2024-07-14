@@ -106,7 +106,7 @@
     <Button fx:id="rollButton" layoutX="989.0" layoutY="183.0" mnemonicParsing="false" onAction="#rollDice" prefHeight="88.0" prefWidth="247.0" text="Lancia Dado" />
     <Label fx:id="diceResultLabel" layoutX="1037.0" layoutY="271.0" prefHeight="75.0" prefWidth="151.0" text="Risultato del dado: " />
     <Label fx:id="cellEffectLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1002.0" layoutY="356.0" prefHeight="175.0" prefWidth="220.0" text="Effetto della casella: " textAlignment="CENTER" />
-   <Label fx:id="turnLabel" layoutX="987.0" layoutY="28.0" prefHeight="56.0" prefWidth="247.0" text="Tocca a:" textFill="RED">
+   <Label fx:id="turnLabel" layoutX="987.0" layoutY="28.0" prefHeight="56.0" prefWidth="247.0" text="Tocca a:" textFill="BLACK">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
