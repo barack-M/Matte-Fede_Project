@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.util.List;
 
 public class Main extends Application {
@@ -19,14 +18,18 @@ public class Main extends Application {
         showMenu();
     }
 
-    private void showMenu() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
-        Parent root = loader.load();
-        MenuController controller = loader.getController();
-        controller.setStage(primaryStage);
-        primaryStage.setTitle("Menu");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+    private void showMenu() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            Parent root = loader.load();
+            MenuController controller = loader.getController();
+            controller.setStage(primaryStage);
+            primaryStage.setTitle("Menu");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void setPlayers(List<Player> players) {
@@ -39,8 +42,7 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
             Parent root = loader.load();
             MainController controller = loader.getController();
-            controller.setPlayers(players);
-            controller.setTurn();
+            controller.setGame(players);
 
             primaryStage.setTitle("Gioco dell'Oca");
             primaryStage.setScene(new Scene(root));
@@ -54,4 +56,3 @@ public class Main extends Application {
         launch(args);
     }
 }
-

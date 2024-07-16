@@ -1,5 +1,6 @@
 package org.example.giocodelloca;
 
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -49,13 +50,38 @@ public class Player {
     }
 
     public void moveForward(int steps) {
-        movePlayerTo(position + steps);
+        movePlayerTo(getPosition() + steps);
     }
 
     public void movePlayerTo(int newPosition) {
+        MainController controller = MainController.getInstance();
+        if (controller == null) {
+            return;
+        }
+
+        if(newPosition == 63) {
+            controller.victory(this);
+        } else if (newPosition > 63) {
+            int overflow = newPosition - 63;
+            newPosition = 63 - overflow;
+        }
+
+        StackPane cell = controller.getCell(position);
+        if(cell != null) {
+            cell.getChildren().remove(getToken());
+        }
+
         this.position = newPosition;
 
-        String effect = MainController.getCellEffect(position);
-        MainController.cellEffectLabel.setText("Effetto della casella: " + effect);
+        cell = controller.getCell(position);
+        if(cell != null) {
+            int offset = cell.getChildren().size() * 15;
+            getToken().setTranslateX(offset);
+            getToken().setTranslateY(offset);
+            cell.getChildren().add(getToken());
+        }
+
+        String effect = controller.getCellEffect(position);
+        controller.cellEffectLabel.setText("Effetto della casella: " + effect);
     }
 }
