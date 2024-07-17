@@ -3,8 +3,6 @@ package org.example.giocodelloca;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ public class PlayerSetupController {
 
     private List<Player> players = new ArrayList<>();
 
-    private boolean chose = false;
+    private final boolean chose = false;
 
     private int numP = 0;
 
