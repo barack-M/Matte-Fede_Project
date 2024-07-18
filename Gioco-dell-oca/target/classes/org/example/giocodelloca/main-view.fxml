@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.StackPane?>
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.giocodelloca.MainController">
-    <GridPane fx:id="boardGrid" gridLinesVisible="true" layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="900.0">
+<AnchorPane fx:id="boardPane" prefHeight="800.0" prefWidth="1250.0" translateX="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.giocodelloca.MainController">
+    <GridPane fx:id="boardGrid" gridLinesVisible="true" layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="900.0" translateY="-10.0">
         <!-- Caselle del tabellone -->
         <StackPane GridPane.columnIndex="0" GridPane.rowIndex="0">
             <Label text="Start" />
@@ -223,10 +223,19 @@
             <RowConstraints prefHeight="100.0" />
         </rowConstraints>
     </GridPane>
-    <Button fx:id="rollButton" layoutX="989.0" layoutY="183.0" mnemonicParsing="false" onAction="#rollDice" prefHeight="88.0" prefWidth="247.0" text="Lancia Dado" />
-    <Label fx:id="diceResultLabel" layoutX="1037.0" layoutY="271.0" prefHeight="75.0" prefWidth="151.0" text="Risultato del dado: " />
-    <Label fx:id="cellEffectLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="1002.0" layoutY="356.0" prefHeight="175.0" prefWidth="220.0" text="Effetto della casella: " textAlignment="CENTER" />
-   <Label fx:id="turnLabel" layoutX="987.0" layoutY="28.0" prefHeight="56.0" prefWidth="247.0" text="Tocca a:" textFill="BLACK">
+    <Button fx:id="rollButton" layoutX="999.0" layoutY="127.0" mnemonicParsing="false" onAction="#rollDice" prefHeight="143.0" prefWidth="151.0" text="Lancia Dado">
+      <font>
+         <Font size="19.0" />
+      </font></Button>
+    <Label fx:id="diceResultLabel" layoutX="999.0" layoutY="270.0" prefHeight="75.0" prefWidth="151.0" text="E' uscito:">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+    <Label fx:id="cellEffectLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="937.0" layoutY="345.0" prefHeight="197.0" prefWidth="274.0" style="-fx-border-color: black;         -fx-border-width: 2;" text="Effetto della casella: " textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="937.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="345.0">
+      <font>
+         <Font size="19.0" />
+      </font></Label>
+   <Label fx:id="turnLabel" layoutX="951.0" layoutY="51.0" prefHeight="56.0" prefWidth="247.0" text="Tocca a:" textFill="BLACK">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>

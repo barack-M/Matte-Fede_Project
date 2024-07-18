@@ -23,22 +23,13 @@ public class PlayerSetupController {
 
     public void initialize() {
         for(int i = 0; i < 2; i++) {
-            TextField nameField = new TextField();
-            nameField.setPromptText("Nome Giocatore " + (numP + 1));
-            ColorPicker colorPicker = new ColorPicker();
-            colorPicker.setValue(Color.hsb(numP * 100, 0.7, 0.7));
-
-            playerGrid.add(new Label("Giocatore " + (numP + 1)), 0, numP);
-            playerGrid.add(nameField, 1, numP);
-            playerGrid.add(colorPicker, 2, numP);
+            createP();
             numP++;
         }
         numP--;
     }
 
-    @FXML
-    private void setupPlayers() {
-        numP++;
+    public void createP(){
         TextField nameField = new TextField();
         nameField.setPromptText("Nome Giocatore " + (numP + 1));
         ColorPicker colorPicker = new ColorPicker();
@@ -47,6 +38,12 @@ public class PlayerSetupController {
         playerGrid.add(new Label("Giocatore " + (numP + 1)), 0, numP);
         playerGrid.add(nameField, 1, numP);
         playerGrid.add(colorPicker, 2, numP);
+    }
+
+    @FXML
+    private void setupPlayers() {
+        numP++;
+        createP();
     }
 
     @FXML

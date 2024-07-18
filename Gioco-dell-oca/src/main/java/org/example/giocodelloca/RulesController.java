@@ -19,7 +19,6 @@ public class RulesController {
 
     @FXML
     private void saveRules() {
-        // Implementa la logica per salvare le regole
         System.out.println("Regole salvate!");
     }
 }

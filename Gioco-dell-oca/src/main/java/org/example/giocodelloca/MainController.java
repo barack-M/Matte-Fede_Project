@@ -3,13 +3,15 @@ package org.example.giocodelloca;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import java.util.List;
 import java.util.Random;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Node;
-import org.example.giocodelloca.Player;
+import javafx.scene.shape.Rectangle;
 
 public class MainController {
     @FXML
@@ -27,13 +29,15 @@ public class MainController {
     @FXML
     private GridPane boardGrid;
 
+    @FXML
+    private AnchorPane boardPane;
+
     private int turn;
     Random random = new Random();
     private List<Player> players;
     private static MainController instance;
 
-    // Mappa delle posizioni lineari alle coordinate della griglia
-    private int[][] snailPath = {
+    public int[][] snailPath = {
             {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {0, 7}, {0, 8},
             {1, 8}, {2, 8}, {3, 8}, {4, 8}, {5, 8}, {6, 8}, {6, 7}, {6, 6}, {6, 5},
             {6, 4}, {6, 3}, {6, 2}, {6, 1}, {6, 0}, {5, 0}, {4, 0}, {3, 0}, {2, 0},
@@ -55,9 +59,35 @@ public class MainController {
     public void setGame(List<Player> players) {
         this.players = players;
         initializePlayersOnBoard();
+        setSpecial();
 
         turn = random.nextInt(players.size());
         turnLabel.setText("Turno di: " + players.get(turn).getName());
+    }
+
+    private void setSpecial(){
+        MainController controller = MainController.getInstance();
+        SpecialCells.initialize();
+        for(int i = 0; i < 6; i++){
+            Rectangle spcell = new Rectangle(100, 100, Color.RED);
+            StackPane cell = getCell(SpecialCells.waitCord[i]);
+            if (cell != null) {
+                cell.getChildren().add(spcell);
+            }
+        }
+
+        for(int i = 0; i < 2; i++){
+            Rectangle spcell = new Rectangle(100, 100, Color.BLUE);
+            StackPane cell = getCell(SpecialCells.backtoOneCord[i]);
+            if (cell != null) {
+                cell.getChildren().add(spcell);
+            }
+        }
+        Rectangle spcell = new Rectangle(100, 100, Color.YELLOW);
+        StackPane cell = getCell(62);
+        if (cell != null) {
+            cell.getChildren().add(spcell);
+        }
     }
 
     private void initializePlayersOnBoard() {
@@ -94,12 +124,7 @@ public class MainController {
         turnLabel.setText("Turno di: " + players.get(turn).getName());
     }
 
-    public String getCellEffect(int position) {
-        // Logica per determinare l'effetto della casella
-        return "Nessun effetto";
-    }
-
-    public void victory(Player player){
-        // il player ha vinto, apriamo una nuova finestra che gli fa le congratulazioni?
+    public String getCellEffect(String string) {
+        return string;
     }
 }
