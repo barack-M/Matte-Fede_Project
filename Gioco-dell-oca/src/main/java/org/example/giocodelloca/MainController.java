@@ -3,11 +3,14 @@ package org.example.giocodelloca;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Node;
@@ -70,18 +73,25 @@ public class MainController {
         MainController controller = MainController.getInstance();
         SpecialCells.initialize();
         for(int i = 0; i < 6; i++){
-            Rectangle spcell = new Rectangle(100, 100, Color.RED);
+            ImageView imageView = new ImageView();
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/giocodelloca/Icons/app.png")));
             StackPane cell = getCell(SpecialCells.waitCord[i]);
+            imageView.setImage(image);
+            imageView.setFitHeight(80);
+            imageView.setFitWidth(80);
             if (cell != null) {
-                cell.getChildren().add(spcell);
+                cell.getChildren().add(imageView);
             }
         }
-
         for(int i = 0; i < 2; i++){
-            Rectangle spcell = new Rectangle(100, 100, Color.BLUE);
+            ImageView imageView = new ImageView();
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/giocodelloca/Icons/skull1.png")));
             StackPane cell = getCell(SpecialCells.backtoOneCord[i]);
+            imageView.setImage(image);
+            imageView.setFitHeight(80);
+            imageView.setFitWidth(80);
             if (cell != null) {
-                cell.getChildren().add(spcell);
+                cell.getChildren().add(imageView);
             }
         }
         Rectangle spcell = new Rectangle(100, 100, Color.YELLOW);
