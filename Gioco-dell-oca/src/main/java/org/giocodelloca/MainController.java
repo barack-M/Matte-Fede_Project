@@ -16,6 +16,7 @@ import java.util.Random;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.Parent;
 
 public class MainController {
     @FXML
@@ -65,9 +66,11 @@ public class MainController {
         this.players = players;
         initializePlayersOnBoard();
         ObservableList<Node> children = boardGrid.getChildren();
-        for(Node i : children) {
-
-            i.setStyle("-fx-border-color: rgb(101, 67, 33); -fx-border-width: 2");
+        for (Node child : children) {
+            if (child instanceof Parent parentNode) {
+                parentNode.getChildrenUnmodifiable().getFirst().setStyle("-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold");
+            }
+            child.setStyle("-fx-border-color: rgb(101, 67, 33); -fx-border-width: 2;");
         }
         setSpecial();
 
@@ -100,10 +103,14 @@ public class MainController {
                 cell.getChildren().add(imageView);
             }
         }
-        Rectangle spcell = new Rectangle(100, 100, Color.YELLOW);
+        ImageView imageView = new ImageView();
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/giocodelloca/Icons/crown.png")));
         StackPane cell = getCell(62);
+        imageView.setImage(image);
+        imageView.setFitHeight(80);
+        imageView.setFitWidth(80);
         if (cell != null) {
-            cell.getChildren().add(spcell);
+            cell.getChildren().add(imageView);
         }
     }
 

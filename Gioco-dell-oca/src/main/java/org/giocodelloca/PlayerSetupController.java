@@ -54,11 +54,12 @@ public class PlayerSetupController {
         for(int i = 0; i < numRows; i++){
             TextField nameField = (TextField) getNodeFromGridPane(playerGrid, 1, i);
             ColorPicker colorPicker = (ColorPicker) getNodeFromGridPane(playerGrid, 2, i);
-
-            if (nameField.getText().equals("\0")) {
-                players.add(new Player(nameField.getText(), 0, colorPicker.getValue(), null));
-            }else{
-                players.add(new Player("P"+i, 0, colorPicker.getValue(), null));
+            if(colorPicker != null) {
+                if (nameField.getText().isEmpty()) {
+                    players.add(new Player("P" + i, 0, colorPicker.getValue(), null));
+                } else {
+                    players.add(new Player(nameField.getText(), 0, colorPicker.getValue(), null));
+                }
             }
         }
         Main.setPlayers(players);

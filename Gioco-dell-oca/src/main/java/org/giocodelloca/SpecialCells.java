@@ -14,7 +14,13 @@ public class SpecialCells {
         }
 
         for(int i = 0; i < 2; i++) {
-            backtoOneCord[i] = random.nextInt(30, 61);
+            int randPos = random.nextInt(30, 61);
+            for(int j : waitCord){
+                if(j == randPos){
+                    randPos++;
+                }
+            }
+            backtoOneCord[i] = randPos;
         }
     }
 
@@ -43,7 +49,7 @@ public class SpecialCells {
     }
 
     private static void backtoOne(Player player){
-        player.position = 1;
+        player.movePlayerTo(1);
     }
 
     public static void victory(Player player){
