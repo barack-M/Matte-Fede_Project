@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="boardPane" prefHeight="800.0" prefWidth="1250.0" stylesheets="@style/styles.css" translateX="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giocodelloca.MainController">
-    <GridPane fx:id="boardGrid" gridLinesVisible="true" layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="900.0" styleClass="grid-pane" translateY="-10.0">
-        <!-- Caselle del tabellone -->
+<AnchorPane fx:id="boardPane" prefHeight="800.0" prefWidth="1250.0" stylesheets="@style/styles.css" translateX="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giocodelloca.MainController" style="-fx-background-color: rgb(0, 70, 0)">
+    <GridPane fx:id="boardGrid" layoutX="20.0" layoutY="20.0" prefHeight="700.0" prefWidth="900.0" styleClass="grid-pane" translateY="-10.0" style="-fx-border-color: rgb(101, 67, 33);     -fx-border-width: 7;">
+
         <StackPane GridPane.columnIndex="0" GridPane.rowIndex="0">
             <Label text="Start" />
         </StackPane>

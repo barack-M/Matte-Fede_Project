@@ -1,5 +1,6 @@
 package org.giocodelloca;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -63,8 +64,13 @@ public class MainController {
     public void setGame(List<Player> players) {
         this.players = players;
         initializePlayersOnBoard();
+        ObservableList<Node> children = boardGrid.getChildren();
+        for(Node i : children) {
+
+            i.setStyle("-fx-border-color: rgb(101, 67, 33); -fx-border-width: 2");
+        }
         setSpecial();
-        rollButton.getStyleClass().add("button-24");
+
         turn = random.nextInt(players.size());
         turnLabel.setText("Turno di: " + players.get(turn).getName());
     }
