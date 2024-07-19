@@ -1,4 +1,4 @@
-package org.example.giocodelloca;
+package org.giocodelloca;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

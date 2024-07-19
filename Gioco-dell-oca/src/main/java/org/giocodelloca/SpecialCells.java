@@ -1,10 +1,6 @@
-package org.example.giocodelloca;
-
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+package org.giocodelloca;
 
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 public class SpecialCells {
 

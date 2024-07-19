@@ -1,4 +1,4 @@
-package org.example.giocodelloca;
+package org.giocodelloca;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;

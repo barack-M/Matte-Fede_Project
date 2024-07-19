@@ -3,6 +3,6 @@ module org.example.giocodelloca {
     requires javafx.fxml;
 
 
-    opens org.example.giocodelloca to javafx.fxml;
-    exports org.example.giocodelloca;
+    opens org.giocodelloca to javafx.fxml;
+    exports org.giocodelloca;
 }

@@ -1,4 +1,4 @@
-package org.example.giocodelloca;
+package org.giocodelloca;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
