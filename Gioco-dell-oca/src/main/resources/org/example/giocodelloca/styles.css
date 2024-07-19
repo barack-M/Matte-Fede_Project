@@ -1,0 +1,25 @@
+.button-raised {
+    -fx-padding: 0.9em 0.9em;
+    -jfx-button-type: bold;
+    -fx-background-color: rgb(159, 0, 0);
+    -fx-text-fill: WHITE;
+    -fx-background-radius: 50;
+    -fx-border-color: rgb(130, 0, 0);
+    -fx-border-width: 3;
+    -fx-border-radius: 43;
+    -fx-border-style: raised;
+}
+.button:hover {
+    -fx-background-color: rgb(130, 0, 0); /* Colore di sfondo quando premuto */
+    -fx-border-color: rgb(100, 0, 0);
+}
+
+.button:pressed {
+    -fx-background-color: rgb(170, 0, 0); /* Colore di sfondo quando premuto */
+    -fx-border-color: rgb(150, 0, 0);
+}
+
+
+.grid-pane {
+    -fx-background-color: #f0f0f0;
+}

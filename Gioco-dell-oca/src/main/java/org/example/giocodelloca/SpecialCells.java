@@ -41,12 +41,12 @@ public class SpecialCells {
         return "Nessun effetto!";
     }
 
-    public static void waitOne(Player player){
+    private static void waitOne(Player player){
         player.stuck =+ 1;
 
     }
 
-    public static void backtoOne(Player player){
+    private static void backtoOne(Player player){
         player.position = 1;
     }
 

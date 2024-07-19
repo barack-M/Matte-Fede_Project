@@ -32,6 +32,7 @@ public class MainController {
     @FXML
     private AnchorPane boardPane;
 
+
     private int turn;
     Random random = new Random();
     private List<Player> players;
@@ -60,7 +61,7 @@ public class MainController {
         this.players = players;
         initializePlayersOnBoard();
         setSpecial();
-
+        rollButton.getStyleClass().add("button-24");
         turn = random.nextInt(players.size());
         turnLabel.setText("Turno di: " + players.get(turn).getName());
     }
