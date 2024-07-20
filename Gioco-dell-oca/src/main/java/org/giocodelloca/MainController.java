@@ -147,8 +147,4 @@ public class MainController {
         turn = (turn + 1) % players.size();
         turnLabel.setText("Turno di: " + players.get(turn).getName());
     }
-
-    public String getCellEffect(String string) {
-        return string;
-    }
 }

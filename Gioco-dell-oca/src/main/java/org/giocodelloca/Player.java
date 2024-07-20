@@ -101,7 +101,7 @@ public class Player {
 
             }
 
-            String effect = controller.getCellEffect(SpecialCells.activate(this));
+            String effect = SpecialCells.activate(this);
             controller.cellEffectLabel.setText(effect);
         }
         else{
