@@ -7,81 +7,43 @@ import javafx.scene.layout.StackPane;
 import java.util.*;
 
 public class SpecialCells {
-    static MainController controller = MainController.getInstance();
+    private static MainController controller;
 
-    public static int[] waitOneCord = new int[6];
-    public static int[] backtoOneCord = new int[2];
-    private static final Map<Integer, Runnable> effects = new HashMap<>();
-
-    public static void initialize(){
-        Random random = new Random();
-        Set<Integer> uniquePositions = new HashSet<>();
-
-        for(int i = 0; i < 6; i++) {
-            int pos;
-            do {
-                pos = random.nextInt(1, 62);
-            } while (!uniquePositions.add(pos));
-            waitOneCord[i] = pos;
-        }
-
-        for(int i = 0; i < 2; i++) {
-            int pos;
-            do {
-                pos = random.nextInt(30, 55);
-            } while (!uniquePositions.add(pos));
-            backtoOneCord[i] = pos;
-        }
-
-        for (int i = 0; i < 6; i++) {
-            addImageToCell(waitOneCord[i], "/org/giocodelloca/Icons/locket.png");
-        }
-        for (int i = 0; i < 2; i++) {
-            addImageToCell(backtoOneCord[i], "/org/giocodelloca/Icons/skull1.png");
-        }
-        addImageToCell(62, "/org/giocodelloca/Icons/crown.png");
-        for (int pos : waitOneCord) {
-            effects.put(pos, () -> waitOne(controller.getPlayerAtPosition(pos)));
-        }
-        for (int pos : backtoOneCord) {
-            effects.put(pos, () -> backtoOne(controller.getPlayerAtPosition(pos)));
-        }
-        effects.put(62, () -> controller.victory(controller.getPlayerAtPosition(62)));
-    }
-
-    public static void activate(Player player){
+    public static void initialize(Map<CellEffect, Integer> effectSettings) {
+        controller = MainController.getInstance();
         if (controller == null) {
-            return;
+            throw new IllegalStateException("MainController is not initialized yet");
         }
-        int position = player.getPosition();
-        Runnable effect = effects.get(position);
+
+        CellEffectManager.configureEffects(effectSettings);
+
+        updateCellIcons();
+    }
+
+    private static void updateCellIcons() {
+        for (Map.Entry<Integer, CellEffect> entry : CellEffectManager.getAllEffects().entrySet()) {
+            int position = entry.getKey();
+            CellEffect effect = entry.getValue();
+            ImageView imageView = new ImageView();
+            Image image = effect.getImage();
+            StackPane cell = controller.getCell(position);
+            imageView.setImage(image);
+            imageView.setFitHeight(80);
+            imageView.setFitWidth(80);
+            if (cell != null) {
+                cell.getChildren().add(imageView);
+            }
+        }
+    }
+
+    public static void activate(Player player) {
+        CellEffect effect = CellEffectManager.getEffect(player.getPosition());
         if (effect != null) {
-            effect.run();
+            effect.apply(player, controller);
+        } else if (player.getPosition() == 62) {
+            controller.victory(player);
         } else {
-            controller.cellEffectLabel.setText("Casella " + position + ": Nessun effetto");
-        }
-    }
-
-
-    private static void waitOne(Player player){
-        controller.cellEffectLabel.setText("Casella " + player.getPosition() + ": ASPETTA UN TURNO: " + player.getName() +  " per il prossimo turno non ti puoi muovere!");
-        player.stuck += 1;
-    }
-
-    private static void backtoOne(Player player){
-        controller.cellEffectLabel.setText("Casella " + player.getPosition() + ": TORNI ALLA CASELLA UNO: dai " + player.getName() + " che ce la fai!");
-        player.movePlayerTo(1);
-    }
-
-    private static void addImageToCell(int position, String imagePath) {
-        ImageView imageView = new ImageView();
-        Image image = new Image(Objects.requireNonNull(SpecialCells.class.getResourceAsStream(imagePath)));
-        StackPane cell = controller.getCell(position);
-        imageView.setImage(image);
-        imageView.setFitHeight(80);
-        imageView.setFitWidth(80);
-        if (cell != null) {
-            cell.getChildren().add(imageView);
+            controller.cellEffectLabel.setText("Casella " + player.getPosition() + ": Nessun effetto");
         }
     }
 }

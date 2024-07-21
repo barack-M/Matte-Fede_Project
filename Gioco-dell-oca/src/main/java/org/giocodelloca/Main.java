@@ -5,9 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import java.util.List;
+import java.util.Map;
 
 public class Main extends Application {
     private static List<Player> players;
@@ -16,34 +17,32 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         Main.primaryStage = primaryStage;
-        showMenu();
+        showGameSetup();
     }
 
-    private void showMenu() {
+    private void showGameSetup() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("game-setup.fxml"));
             Parent root = loader.load();
-            MenuController controller = loader.getController();
+            GameSetupController controller = loader.getController();
             controller.setStage(primaryStage);
-            primaryStage.setTitle("Menu");
+            primaryStage.setTitle("Game Setup");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {
-            showErrorDialog("Error loading menu", e.getMessage());
+            showErrorDialog("Error loading game setup", e.getMessage());
         }
     }
 
-    public static void setPlayers(List<Player> players) {
+    public static void setGame(List<Player> players, Map<CellEffect, Integer> effectSettings) {
         Main.players = players;
-        showGameBoard();
-    }
 
-    private static void showGameBoard() {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
             Parent root = loader.load();
             MainController controller = loader.getController();
             controller.setGame(players);
+            SpecialCells.initialize(effectSettings);
 
             primaryStage.setTitle("Gioco dell'Oca");
             primaryStage.setScene(new Scene(root));
@@ -51,6 +50,10 @@ public class Main extends Application {
         } catch (Exception e) {
             showErrorDialog("Error loading game board", e.getMessage());
         }
+    }
+
+    private static void showGameBoard() {
+
     }
 
     private static void showErrorDialog(String header, String content) {

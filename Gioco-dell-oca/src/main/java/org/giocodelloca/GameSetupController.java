@@ -1,21 +1,37 @@
 package org.giocodelloca;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.*;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class PlayerSetupController {
+import org.giocodelloca.effects.*;
+
+public class GameSetupController {
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     private final List<Player> players = new ArrayList<>();
     @FXML
     private GridPane playerGrid;
+    @FXML
+    private Slider waitOneSlider;
+    @FXML
+    private Label waitOneLabel;
+    @FXML
+    private Slider backToOneSlider;
+    @FXML
+    private Label backToOneLabel;
     private int numP = 0;
 
     public void initialize() {
@@ -24,6 +40,9 @@ public class PlayerSetupController {
             numP++;
         }
         numP--;
+
+        waitOneSlider.valueProperty().addListener((obs, oldVal, newVal) -> waitOneLabel.setText(String.valueOf(newVal.intValue())));
+        backToOneSlider.valueProperty().addListener((obs, oldVal, newVal) -> backToOneLabel.setText(String.valueOf(newVal.intValue())));
     }
 
     public void createP() {
@@ -57,9 +76,13 @@ public class PlayerSetupController {
             } else {
                 players.add(new Player(nameField.getText(), 0, colorPicker.getValue()));
             }
-
         }
-        Main.setPlayers(players);
+
+        Map<CellEffect, Integer> effectSettings = new HashMap<>();
+        effectSettings.put(new WaitOneEffect(), (int) waitOneSlider.getValue());
+        effectSettings.put(new BackToOneEffect(), (int) backToOneSlider.getValue());
+
+        Main.setGame(players, effectSettings);
     }
 
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
@@ -71,5 +94,3 @@ public class PlayerSetupController {
         return null;
     }
 }
-
-

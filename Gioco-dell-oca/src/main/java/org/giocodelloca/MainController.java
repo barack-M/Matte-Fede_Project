@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -62,7 +63,6 @@ public class MainController {
             }
             child.setStyle("-fx-border-color: rgb(101, 67, 33); -fx-border-width: 2;");
         }
-        SpecialCells.initialize();
 
         turn = random.nextInt(players.size());
         turnLabel.setText("Turno di: " + players.get(turn).getName());
