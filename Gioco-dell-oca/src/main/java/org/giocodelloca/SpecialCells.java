@@ -34,8 +34,6 @@ public class SpecialCells {
             backtoOneCord[i] = pos;
         }
 
-        clearPreviousImages();
-
         for (int i = 0; i < 6; i++) {
             ImageView imageView = new ImageView();
             Image image = new Image(Objects.requireNonNull(SpecialCells.class.getResourceAsStream("/org/giocodelloca/Icons/app.png")));
@@ -66,15 +64,6 @@ public class SpecialCells {
         imageView.setFitWidth(80);
         if (cell != null) {
             cell.getChildren().add(imageView);
-        }
-    }
-
-    private static void clearPreviousImages() {
-        for (int i = 1; i <= 62; i++) {
-            StackPane cell = controller.getCell(i);
-            if (cell != null && !cell.getChildren().isEmpty()) {
-                cell.getChildren().removeIf(node -> node instanceof ImageView);
-            }
         }
     }
 
