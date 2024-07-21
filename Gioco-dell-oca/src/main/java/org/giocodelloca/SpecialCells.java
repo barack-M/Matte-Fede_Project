@@ -11,7 +11,7 @@ import java.util.Set;
 public class SpecialCells {
     static MainController controller = MainController.getInstance();
 
-    public static int[] waitCord = new int[6];
+    public static int[] waitOneCord = new int[6];
     public static int[] backtoOneCord = new int[2];
 
     public static void initialize(){
@@ -23,7 +23,7 @@ public class SpecialCells {
             do {
                 pos = random.nextInt(1, 62);
             } while (!uniquePositions.add(pos));
-            waitCord[i] = pos;
+            waitOneCord[i] = pos;
         }
 
         for(int i = 0; i < 2; i++) {
@@ -35,36 +35,12 @@ public class SpecialCells {
         }
 
         for (int i = 0; i < 6; i++) {
-            ImageView imageView = new ImageView();
-            Image image = new Image(Objects.requireNonNull(SpecialCells.class.getResourceAsStream("/org/giocodelloca/Icons/app.png")));
-            StackPane cell = controller.getCell(SpecialCells.waitCord[i]);
-            imageView.setImage(image);
-            imageView.setFitHeight(80);
-            imageView.setFitWidth(80);
-            if (cell != null) {
-                cell.getChildren().add(imageView);
-            }
+            addImageToCell(waitOneCord[i], "/org/giocodelloca/Icons/locket.png");
         }
         for (int i = 0; i < 2; i++) {
-            ImageView imageView = new ImageView();
-            Image image = new Image(Objects.requireNonNull(SpecialCells.class.getResourceAsStream("/org/giocodelloca/Icons/skull1.png")));
-            StackPane cell = controller.getCell(SpecialCells.backtoOneCord[i]);
-            imageView.setImage(image);
-            imageView.setFitHeight(80);
-            imageView.setFitWidth(80);
-            if (cell != null) {
-                cell.getChildren().add(imageView);
-            }
+            addImageToCell(backtoOneCord[i], "/org/giocodelloca/Icons/skull1.png");
         }
-        ImageView imageView = new ImageView();
-        Image image = new Image(Objects.requireNonNull(SpecialCells.class.getResourceAsStream("/org/giocodelloca/Icons/crown.png")));
-        StackPane cell = controller.getCell(62);
-        imageView.setImage(image);
-        imageView.setFitHeight(80);
-        imageView.setFitWidth(80);
-        if (cell != null) {
-            cell.getChildren().add(imageView);
-        }
+        addImageToCell(62, "/org/giocodelloca/Icons/crown.png");
     }
 
     public static void activate(Player player){
@@ -73,7 +49,7 @@ public class SpecialCells {
         }
         int position = player.getPosition();
 
-        for (int i : waitCord) {
+        for (int i : waitOneCord) {
             if (position == i) {
                 waitOne(player);
                 controller.cellEffectLabel.setText("Casella " + position + ": ASPETTA UN TURNO: " + player.getName() +  " per il prossimo turno non ti puoi muovere!");
@@ -100,5 +76,17 @@ public class SpecialCells {
 
     private static void backtoOne(Player player){
         player.movePlayerTo(1);
+    }
+
+    private static void addImageToCell(int position, String imagePath) {
+        ImageView imageView = new ImageView();
+        Image image = new Image(Objects.requireNonNull(SpecialCells.class.getResourceAsStream(imagePath)));
+        StackPane cell = controller.getCell(position);
+        imageView.setImage(image);
+        imageView.setFitHeight(80);
+        imageView.setFitWidth(80);
+        if (cell != null) {
+            cell.getChildren().add(imageView);
+        }
     }
 }
