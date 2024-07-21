@@ -4,7 +4,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-import java.util.Random;
 
 public class Player {
     public String name;
@@ -13,7 +12,7 @@ public class Player {
     public Circle Token;
     public int stuck = 0;
 
-    public Player(String name, int position, Color color, Circle Token) {
+    public Player(String name, int position, Color color) {
         this.name = name;
         this.position = position;
         this.color = color;
@@ -28,6 +27,10 @@ public class Player {
         return position;
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public Color getColor() {
         return color;
     }
@@ -36,24 +39,8 @@ public class Player {
         return Token;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
     public void setToken(Circle token) {
         Token = token;
-    }
-
-    public void moveForward(int steps) {
-        movePlayerTo(getPosition() + steps);
     }
 
     public void movePlayerTo(int newPosition) {
@@ -61,51 +48,33 @@ public class Player {
         if (controller == null) {
             return;
         }
-        if(stuck == 0) {
 
-            if (newPosition > 63) {
-                int overflow = newPosition - 63;
-                newPosition = 63 - overflow;
-            }
-
-            StackPane cell = controller.getCell(position);
-            if (cell != null) {
-                cell.getChildren().remove(getToken());
-            }
-
-            this.position = newPosition;
-            cell = controller.getCell(position);
-            if (cell != null) {
-                Random random = new Random();
-                int offset = cell.getChildren().size() * 15;
-                if(random.nextInt(1, 4) == 1){
-                    getToken().setTranslateX(offset);
-                    getToken().setTranslateY(offset);
-                    cell.getChildren().add(getToken());
-                }
-                else if(random.nextInt(1, 4) == 2){
-                    getToken().setTranslateX(-offset);
-                    getToken().setTranslateY(offset);
-                    cell.getChildren().add(getToken());
-                }
-                else if(random.nextInt(1, 4) == 3){
-                    getToken().setTranslateX(offset);
-                    getToken().setTranslateY(-offset);
-                    cell.getChildren().add(getToken());
-                }
-                else{
-                    getToken().setTranslateX(-offset);
-                    getToken().setTranslateY(-offset);
-                    cell.getChildren().add(getToken());
-                }
-
-            }
-
-            String effect = SpecialCells.activate(this);
-            controller.cellEffectLabel.setText(effect);
+        if (newPosition > 62) {
+            int overflow = newPosition - 62;
+            newPosition = 62 - overflow;
         }
-        else{
-            stuck--;
+
+        StackPane cell = controller.getCell(getPosition());
+        if (cell != null) {
+            cell.getChildren().remove(getToken());
+        }
+
+        setPosition(newPosition);
+        cell = controller.getCell(getPosition());
+        if (cell != null) {
+            int playerIndex = cell.getChildren().size();
+
+            double[][] offsets = {
+                    {-20, -20}, {20, -20}, {-20, 20}, {20, 20},
+                    {0, -25}, {25, 0}, {0, 25}, {-25, 0}
+            };
+
+            double offsetX = offsets[playerIndex % offsets.length][0];
+            double offsetY = offsets[playerIndex % offsets.length][1];
+
+            getToken().setTranslateX(offsetX);
+            getToken().setTranslateY(offsetY);
+            cell.getChildren().add(getToken());
         }
     }
 }

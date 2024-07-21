@@ -6,13 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Main extends Application {
     private static List<Player> players;
-    private static Stage primaryStage;
+    public static Stage primaryStage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         Main.primaryStage = primaryStage;
         showMenu();
     }
@@ -27,7 +29,7 @@ public class Main extends Application {
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            showErrorDialog("Error loading menu", e.getMessage());
         }
     }
 
@@ -47,8 +49,16 @@ public class Main extends Application {
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            showErrorDialog("Error loading game board", e.getMessage());
         }
+    }
+
+    private static void showErrorDialog(String header, String content) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     public static void main(String[] args) {

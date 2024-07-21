@@ -1,48 +1,25 @@
 package org.giocodelloca;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
-import javafx.scene.layout.StackPane;
-import javafx.scene.Node;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.Parent;
 
 public class MainController {
-    @FXML
-    private Button rollButton;
-
-    @FXML
-    private Label turnLabel;
-
-    @FXML
-    private Label diceResultLabel;
-
+    private static MainController instance;
     @FXML
     public Label cellEffectLabel;
-
-    @FXML
-    private GridPane boardGrid;
-
-    @FXML
-    private AnchorPane boardPane;
-
-
-    private int turn;
-    Random random = new Random();
-    private List<Player> players;
-    private static MainController instance;
-
     public int[][] snailPath = {
             {0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {0, 7}, {0, 8},
             {1, 8}, {2, 8}, {3, 8}, {4, 8}, {5, 8}, {6, 8}, {6, 7}, {6, 6}, {6, 5},
@@ -52,14 +29,27 @@ public class MainController {
             {4, 1}, {3, 1}, {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, {3, 6},
             {4, 6}, {4, 5}, {4, 4}, {4, 3}, {4, 2}, {3, 2}, {3, 3}, {3, 4}, {3, 5}
     };
+    Random random = new Random();
+    @FXML
+    private Button rollButton;
+    @FXML
+    private Button nextTurnButton;
+    @FXML
+    private Label turnLabel;
+    @FXML
+    private Label diceResultLabel;
+    @FXML
+    private GridPane boardGrid;
+    private int turn;
+    private List<Player> players;
+
+    public static MainController getInstance() {
+        return instance;
+    }
 
     @FXML
     private void initialize() {
         instance = this;
-    }
-
-    public static MainController getInstance() {
-        return instance;
     }
 
     public void setGame(List<Player> players) {
@@ -72,46 +62,11 @@ public class MainController {
             }
             child.setStyle("-fx-border-color: rgb(101, 67, 33); -fx-border-width: 2;");
         }
-        setSpecial();
+        SpecialCells.initialize();
 
         turn = random.nextInt(players.size());
         turnLabel.setText("Turno di: " + players.get(turn).getName());
-    }
-
-    private void setSpecial(){
-        MainController controller = MainController.getInstance();
-        SpecialCells.initialize();
-        for(int i = 0; i < 6; i++){
-            ImageView imageView = new ImageView();
-            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/giocodelloca/Icons/app.png")));
-            StackPane cell = getCell(SpecialCells.waitCord[i]);
-            imageView.setImage(image);
-            imageView.setFitHeight(80);
-            imageView.setFitWidth(80);
-            if (cell != null) {
-                cell.getChildren().add(imageView);
-            }
-        }
-        for(int i = 0; i < 2; i++){
-            ImageView imageView = new ImageView();
-            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/giocodelloca/Icons/skull1.png")));
-            StackPane cell = getCell(SpecialCells.backtoOneCord[i]);
-            imageView.setImage(image);
-            imageView.setFitHeight(80);
-            imageView.setFitWidth(80);
-            if (cell != null) {
-                cell.getChildren().add(imageView);
-            }
-        }
-        ImageView imageView = new ImageView();
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/org/giocodelloca/Icons/crown.png")));
-        StackPane cell = getCell(62);
-        imageView.setImage(image);
-        imageView.setFitHeight(80);
-        imageView.setFitWidth(80);
-        if (cell != null) {
-            cell.getChildren().add(imageView);
-        }
+        nextTurnButton.setDisable(true);
     }
 
     private void initializePlayersOnBoard() {
@@ -136,15 +91,47 @@ public class MainController {
     }
 
     @FXML
-    private void rollDice() {
+    private void rollDice(){
         Player actualPlayer = players.get(turn);
 
         int roll = random.nextInt(6) + 1;
         diceResultLabel.setText("Risultato del dado: " + roll);
+        actualPlayer.movePlayerTo(actualPlayer.getPosition() + roll);
+        SpecialCells.activate(actualPlayer);
+        rollButton.setDisable(true);
+        nextTurnButton.setDisable(false);
+    }
 
-        actualPlayer.moveForward(roll);
-
+    @FXML
+    private void nextTurn(){
         turn = (turn + 1) % players.size();
-        turnLabel.setText("Turno di: " + players.get(turn).getName());
+        Player nextPlayer = players.get(turn);
+        turnLabel.setText("Turno di: " + nextPlayer.getName());
+        diceResultLabel.setText("Risultato del dado:");
+        if (nextPlayer.stuck == 0) {
+            rollButton.setDisable(false);
+            nextTurnButton.setDisable(true);
+            cellEffectLabel.setText("");
+        } else {
+            nextPlayer.stuck--;
+            diceResultLabel.setText("");
+            cellEffectLabel.setText("Casella " + nextPlayer.getPosition() + ": salti questo turno");
+        }
+    }
+
+    public void victory(Player winner){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Vittoria!");
+        alert.setHeaderText(null);
+        alert.setContentText(winner.getName() + " ha vinto il gioco! Complimenti!");
+
+        ButtonType buttonExit = new ButtonType("Esci dal gioco");
+        alert.getButtonTypes().setAll(buttonExit);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonExit) {
+            Platform.exit();
+        }
     }
 }
