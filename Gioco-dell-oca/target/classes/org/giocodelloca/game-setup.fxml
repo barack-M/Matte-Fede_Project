@@ -24,11 +24,11 @@
         <Label fx:id="waitOneLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 
         <Label text="Torna alla casella uno:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <Slider fx:id="backToOneSlider" min="0" max="3" value="0" showTickMarks="true" showTickLabels="true" majorTickUnit="1" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Slider fx:id="backToOneSlider" min="0" max="5" value="0" showTickMarks="true" showTickLabels="true" majorTickUnit="1" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         <Label fx:id="backToOneLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
 
         <Label text="Scambiati con l'ultimo giocatore:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <Slider fx:id="swapSlider" min="0" max="3" value="0" showTickMarks="true" showTickLabels="true" majorTickUnit="1" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Slider fx:id="swapSlider" min="0" max="5" value="0" showTickMarks="true" showTickLabels="true" majorTickUnit="1" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         <Label fx:id="swapLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
 
     </GridPane>
