@@ -25,6 +25,10 @@ public class GameSetupController {
     private Slider backToOneSlider;
     @FXML
     private Label backToOneLabel;
+    @FXML
+    private Slider swapSlider;
+    @FXML
+    private Label swapLabel;
     private int numP = 0;
 
     public void initialize() {
@@ -36,6 +40,7 @@ public class GameSetupController {
 
         waitOneSlider.valueProperty().addListener((obs, oldVal, newVal) -> waitOneLabel.setText(String.valueOf(newVal.intValue())));
         backToOneSlider.valueProperty().addListener((obs, oldVal, newVal) -> backToOneLabel.setText(String.valueOf(newVal.intValue())));
+        swapSlider.valueProperty().addListener((obs, oldVal, newVal) -> swapLabel.setText(String.valueOf(newVal.intValue())));
     }
 
     public void createP() {
@@ -74,6 +79,7 @@ public class GameSetupController {
         Map<CellEffect, Integer> effectSettings = new HashMap<>();
         effectSettings.put(new WaitOneEffect(), (int) waitOneSlider.getValue());
         effectSettings.put(new BackToOneEffect(), (int) backToOneSlider.getValue());
+        effectSettings.put(new SwapEffect(), (int) swapSlider.getValue());
 
         Main.setGame(players, effectSettings);
     }
