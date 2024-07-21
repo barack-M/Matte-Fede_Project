@@ -10,8 +10,8 @@ import java.util.Objects;
 public class BackToOneEffect implements CellEffect {
     @Override
     public void apply(Player player, MainController controller) {
-        player.movePlayerTo(1);
         controller.cellEffectLabel.setText("Casella " + player.getPosition() + ": TORNI ALLA CASELLA UNO: dai " + player.getName() + " che ce la fai!");
+        player.movePlayerTo(1);
     }
 
     @Override
