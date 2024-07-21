@@ -42,7 +42,7 @@ public class MainController {
     @FXML
     private GridPane boardGrid;
     private int turn;
-    private List<Player> players;
+    public List<Player> players;
 
     public static MainController getInstance() {
         return instance;

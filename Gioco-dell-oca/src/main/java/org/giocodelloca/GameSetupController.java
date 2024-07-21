@@ -8,19 +8,12 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 import java.util.*;
 
 import org.giocodelloca.effects.*;
 
 public class GameSetupController {
-    private Stage stage;
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     private final List<Player> players = new ArrayList<>();
     @FXML
     private GridPane playerGrid;

@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Main extends Application {
-    private static List<Player> players;
     public static Stage primaryStage;
 
     @Override
@@ -24,8 +23,7 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("game-setup.fxml"));
             Parent root = loader.load();
-            GameSetupController controller = loader.getController();
-            controller.setStage(primaryStage);
+
             primaryStage.setTitle("Game Setup");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -35,8 +33,6 @@ public class Main extends Application {
     }
 
     public static void setGame(List<Player> players, Map<CellEffect, Integer> effectSettings) {
-        Main.players = players;
-
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
             Parent root = loader.load();
@@ -50,10 +46,6 @@ public class Main extends Application {
         } catch (Exception e) {
             showErrorDialog("Error loading game board", e.getMessage());
         }
-    }
-
-    private static void showGameBoard() {
-
     }
 
     private static void showErrorDialog(String header, String content) {
