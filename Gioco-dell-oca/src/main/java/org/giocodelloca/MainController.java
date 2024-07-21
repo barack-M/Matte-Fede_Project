@@ -90,6 +90,15 @@ public class MainController {
         return null;
     }
 
+    public Player getPlayerAtPosition(int position) {
+        for (Player player : players) {
+            if (player.getPosition() == position) {
+                return player;
+            }
+        }
+        return null;
+    }
+
     @FXML
     private void rollDice(){
         Player actualPlayer = players.get(turn);

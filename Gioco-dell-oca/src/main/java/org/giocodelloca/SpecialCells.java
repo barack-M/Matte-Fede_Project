@@ -3,16 +3,15 @@ package org.giocodelloca;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
+
+import java.util.*;
 
 public class SpecialCells {
     static MainController controller = MainController.getInstance();
 
     public static int[] waitOneCord = new int[6];
     public static int[] backtoOneCord = new int[2];
+    private static final Map<Integer, Runnable> effects = new HashMap<>();
 
     public static void initialize(){
         Random random = new Random();
@@ -41,6 +40,13 @@ public class SpecialCells {
             addImageToCell(backtoOneCord[i], "/org/giocodelloca/Icons/skull1.png");
         }
         addImageToCell(62, "/org/giocodelloca/Icons/crown.png");
+        for (int pos : waitOneCord) {
+            effects.put(pos, () -> waitOne(controller.getPlayerAtPosition(pos)));
+        }
+        for (int pos : backtoOneCord) {
+            effects.put(pos, () -> backtoOne(controller.getPlayerAtPosition(pos)));
+        }
+        effects.put(62, () -> controller.victory(controller.getPlayerAtPosition(62)));
     }
 
     public static void activate(Player player){
@@ -48,33 +54,22 @@ public class SpecialCells {
             return;
         }
         int position = player.getPosition();
-
-        for (int i : waitOneCord) {
-            if (position == i) {
-                waitOne(player);
-                controller.cellEffectLabel.setText("Casella " + position + ": ASPETTA UN TURNO: " + player.getName() +  " per il prossimo turno non ti puoi muovere!");
-                return;
-            }
+        Runnable effect = effects.get(position);
+        if (effect != null) {
+            effect.run();
+        } else {
+            controller.cellEffectLabel.setText("Casella " + position + ": Nessun effetto");
         }
-        for (int i : backtoOneCord) {
-            if (position == i) {
-                controller.cellEffectLabel.setText("Casella " + position + ": TORNI ALLA CASELLA UNO: dai " + player.getName() + " che ce la fai!");
-                backtoOne(player);
-                return;
-            }
-        }
-        if(position == 62){
-            controller.victory(player);
-            return;
-        }
-        controller.cellEffectLabel.setText("Casella " + position + ": Nessun effetto");
     }
 
+
     private static void waitOne(Player player){
+        controller.cellEffectLabel.setText("Casella " + player.getPosition() + ": ASPETTA UN TURNO: " + player.getName() +  " per il prossimo turno non ti puoi muovere!");
         player.stuck += 1;
     }
 
     private static void backtoOne(Player player){
+        controller.cellEffectLabel.setText("Casella " + player.getPosition() + ": TORNI ALLA CASELLA UNO: dai " + player.getName() + " che ce la fai!");
         player.movePlayerTo(1);
     }
 
