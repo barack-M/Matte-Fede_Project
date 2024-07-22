@@ -39,3 +39,42 @@
     -fx-border-color: rgb(250, 250, 250);
 }
 
+.effects-label{
+    -fx-border-color: rgb(101, 67, 33);
+    -fx-border-width: 5;
+    -fx-background-radius: 29;
+    -fx-border-radius: 25;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.slider-menu {
+    -fx-padding: 1;
+}
+
+.slider-menu .track {
+    -fx-border-color: rgb(101, 67, 33);
+    -fx-background-color: transparent;
+    -fx-border-width: 2;
+    -fx-border-radius: 30;
+}
+
+.slider-menu .thumb {
+    -fx-background-color: rgb(101, 67, 33);
+}
+.slider-menu .tick-label {
+    -fx-text-fill: tansparent;
+}
+
+.scroll-pane-menu{
+    -fx-background-color: rgb(0, 70, 0);
+}
+
+.scroll-pane-menu .viewport {
+    -fx-opacity: 1;
+}
+
+.scroll-pane-menu .viewport {
+    -fx-background-color: rgb(0, 70, 0);
+    -fx-opacity: 1;
+}
+

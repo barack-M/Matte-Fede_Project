@@ -48,10 +48,14 @@ public class GameSetupController {
         nameField.setPromptText("Nome Giocatore " + (numP + 1));
         ColorPicker colorPicker = new ColorPicker();
         colorPicker.setValue(Color.hsb(numP * 100, 0.7, 0.7));
-
-        playerGrid.add(new Label("Giocatore " + (numP + 1)), 0, numP);
+        colorPicker.setStyle("-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 3; -fx-border-radius: 30;");
+        Label gridLabel = new Label();
+        gridLabel.setText("Giocatore " + (numP +1));
+        gridLabel.setStyle("-fx-text-fill: white; -fx-font-size: 15px; -fx-opacity: 1");
+        playerGrid.add(gridLabel, 0, numP);
         playerGrid.add(nameField, 1, numP);
         playerGrid.add(colorPicker, 2, numP);
+
     }
 
     @FXML

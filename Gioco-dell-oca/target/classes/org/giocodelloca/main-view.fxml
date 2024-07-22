@@ -250,7 +250,7 @@
         <StackPane layoutX="17.0" layoutY="17.0">
             <Label text="START" textFill="WHITE">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font name="System Bold" size="16.0" />
                 </font>
             </Label>
         </StackPane>
@@ -286,7 +286,7 @@
       <font>
          <Font name="System Bold" size="15.0" />
       </font></Label>
-    <Label fx:id="cellEffectLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="937.0" layoutY="345.0" prefHeight="197.0" prefWidth="274.0" style="-fx-border-color: rgb(101, 67, 33); -fx-border-width: 5; -fx-background-radius: 29; -fx-border-radius: 25; -fx-background-color: rgba(255, 255, 255, 0.1);" text="Effetto della casella: " textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="937.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="345.0">
+    <Label fx:id="cellEffectLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="937.0" layoutY="345.0" prefHeight="197.0" prefWidth="274.0" styleClass="effects-label" text="Effetto della casella: " textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="937.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="345.0">
       <font>
          <Font name="System Bold" size="19.0" />
       </font></Label>
