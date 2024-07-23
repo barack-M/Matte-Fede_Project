@@ -5,7 +5,7 @@ import java.util.*;
 import org.giocodelloca.effects.*;
 
 public class CellEffectManager {
-    private static final Map<Integer, CellEffect> effects = new HashMap<>();
+    public static final Map<Integer, CellEffect> effects = new HashMap<>();
     private static final Random random = new Random();
 
     public static void configureEffects(Map<CellEffect, Integer> effectSettings) {

@@ -32,9 +32,9 @@ public class MainController {
     };
     Random random = new Random();
     @FXML
-    private Button rollButton;
+    public Button rollButton;
     @FXML
-    private Button nextTurnButton;
+    public Button nextTurnButton;
     @FXML
     private Label turnLabel;
     @FXML
@@ -97,9 +97,9 @@ public class MainController {
         int roll = random.nextInt(6) + 1;
         diceResultLabel.setText("Risultato del dado: " + roll);
         actualPlayer.movePlayerTo(actualPlayer.getPosition() + roll);
-        SpecialCells.activate(actualPlayer);
         rollButton.setDisable(true);
         nextTurnButton.setDisable(false);
+        SpecialCells.activate(actualPlayer);
     }
 
     @FXML

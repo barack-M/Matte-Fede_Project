@@ -11,51 +11,66 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="600.0" spacing="10" style="-fx-background-color: rgb(0, 70, 0);" stylesheets="@style/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giocodelloca.GameSetupController">
-    <Label text="CONFIGURA EFFETTI DELLE CELLE" textFill="WHITE">
+    <Label text="CONFIGURA EFFETTI DELLE CELLE" textFill="WHITE" translateY="7.0">
         <font>
             <Font name="System Bold" size="19.0" />
         </font>
     </Label>
 
-    <GridPane fx:id="effectsGrid" hgap="10" vgap="10">
-        <Label text="Aspetta un turno:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <GridPane fx:id="effectsGrid" hgap="10" prefHeight="204.0" prefWidth="600.0" vgap="10">
+        <Label text="Aspetta un turno:" textFill="WHITE" translateX="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
          <font>
             <Font size="13.0" />
          </font></Label>
-        <Slider fx:id="waitOneSlider" majorTickUnit="1" max="10" min="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="slider-menu" value="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label fx:id="waitOneLabel" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0">
+        <Slider fx:id="waitOneSlider" majorTickUnit="1" max="10" min="0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="slider-menu" value="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label fx:id="waitOneLabel" text="0" textFill="WHITE" GridPane.columnIndex="4">
          <font>
             <Font size="14.0" />
          </font></Label>
 
-        <Label text="Torna alla casella uno:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Label text="Torna alla casella uno:" textFill="WHITE" translateX="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
          <font>
             <Font size="13.0" />
          </font></Label>
-        <Slider fx:id="backToOneSlider" majorTickUnit="1" max="3" min="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="slider-menu" value="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Label fx:id="backToOneLabel" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <Slider fx:id="backToOneSlider" majorTickUnit="1.0" max="3" min="0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="slider-menu" value="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="backToOneLabel" text="0" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
          <font>
             <Font size="14.0" />
          </font></Label>
 
-        <Label text="Scambiati con l'ultimo giocatore:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Label text="Scambiati con l'ultimo giocatore:" textFill="WHITE" translateX="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
          <font>
             <Font size="13.0" />
          </font></Label>
-        <Slider fx:id="swapSlider" majorTickUnit="1" max="3" min="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="slider-menu" value="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Label fx:id="swapLabel" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <Slider fx:id="swapSlider" majorTickUnit="1" max="3" min="0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="slider-menu" value="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label fx:id="swapLabel" text="0" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
          <font>
             <Font size="14.0" />
          </font></Label>
+      <Label prefHeight="17.0" prefWidth="185.0" text="Attiva un effetto randomico:" textFill="WHITE" translateX="5.0" GridPane.rowIndex="3">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Slider fx:id="randomSlider" majorTickUnit="1.0" max="5.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" styleClass="slider-menu" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="randomLabel" text="0" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
       <columnConstraints>
          <ColumnConstraints />
          <ColumnConstraints />
          <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints maxWidth="7.666666666666686" minWidth="7.666666666666686" prefWidth="7.666666666666686" />
+         <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
       </columnConstraints>
       <rowConstraints>
          <RowConstraints />
          <RowConstraints />
          <RowConstraints />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
       </rowConstraints>
 
     </GridPane>
@@ -68,6 +83,6 @@
     <ScrollPane prefHeight="278.0" prefWidth="600.0" styleClass="scroll-pane-menu" stylesheets="@style/styles.css">
         <GridPane fx:id="playerGrid" hgap="10" style="-fx-background-color: rgb(0, 70, 0);" vgap="10" />
     </ScrollPane>
-    <Button fx:id="addButton" onAction="#setupPlayers" styleClass="button-menu" text="Aggiungi..." />
+    <Button fx:id="addButton" onAction="#setupPlayers" prefHeight="44.0" prefWidth="86.0" styleClass="button-menu" text="Aggiungi..." />
     <Button fx:id="startButton" contentDisplay="BOTTOM" onAction="#startGame" styleClass="button-menu" text="Avvia Gioco" textAlignment="CENTER" translateX="200.0" />
 </VBox>

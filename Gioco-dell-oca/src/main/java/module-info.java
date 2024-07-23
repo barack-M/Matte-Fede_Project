@@ -1,6 +1,7 @@
 module org.example.giocodelloca {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens org.giocodelloca to javafx.fxml;
