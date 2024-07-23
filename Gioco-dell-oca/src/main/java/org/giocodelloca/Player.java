@@ -44,7 +44,7 @@ public class Player {
     }
 
     public void movePlayerTo(int newPosition) {
-        MainController controller = MainController.getInstance();
+        GameController controller = GameController.getInstance();
         if (controller == null) {
             return;
         }

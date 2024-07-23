@@ -2,15 +2,14 @@ package org.giocodelloca.effects;
 
 import javafx.scene.image.Image;
 import org.giocodelloca.Player;
-import org.giocodelloca.MainController;
-import org.giocodelloca.CellEffect;
+import org.giocodelloca.GameController;
 
 import java.util.Objects;
 
 public class SwapEffect implements CellEffect {
 
     @Override
-    public void apply(Player player, MainController controller) {
+    public void apply(Player player, GameController controller) {
         Player minPositionPlayer = player;
         for (Player p : controller.players) {
             if (p != player && (p.getPosition() < minPositionPlayer.getPosition())) {

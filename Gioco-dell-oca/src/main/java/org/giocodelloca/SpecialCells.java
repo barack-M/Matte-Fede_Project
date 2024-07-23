@@ -3,14 +3,15 @@ package org.giocodelloca;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import org.giocodelloca.effects.CellEffect;
 
 import java.util.*;
 
 public class SpecialCells {
-    private static MainController controller;
+    private static GameController controller;
 
     public static void initialize(Map<CellEffect, Integer> effectSettings) {
-        controller = MainController.getInstance();
+        controller = GameController.getInstance();
         if (controller == null) {
             throw new IllegalStateException("MainController is not initialized yet");
         }
@@ -40,8 +41,6 @@ public class SpecialCells {
         CellEffect effect = CellEffectManager.getEffect(player.getPosition());
         if (effect != null) {
             effect.apply(player, controller);
-        } else if (player.getPosition() == 62) {
-            controller.victory(player);
         } else {
             controller.cellEffectLabel.setText("Casella " + player.getPosition() + ": Nessun effetto");
         }

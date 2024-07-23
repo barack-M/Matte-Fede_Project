@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import org.giocodelloca.effects.CellEffect;
+
 import java.util.List;
 import java.util.Map;
 
@@ -34,9 +36,9 @@ public class Main extends Application {
 
     public static void setGame(List<Player> players, Map<CellEffect, Integer> effectSettings) {
         try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("game-view.fxml"));
             Parent root = loader.load();
-            MainController controller = loader.getController();
+            GameController controller = loader.getController();
             controller.setGame(players);
             SpecialCells.initialize(effectSettings);
 

@@ -1,8 +1,9 @@
 package org.giocodelloca;
 
-import java.util.*;
+import org.giocodelloca.effects.CellEffect;
+import org.giocodelloca.effects.VictoryEffect;
 
-import org.giocodelloca.effects.*;
+import java.util.*;
 
 public class CellEffectManager {
     public static final Map<Integer, CellEffect> effects = new HashMap<>();
@@ -10,6 +11,7 @@ public class CellEffectManager {
 
     public static void configureEffects(Map<CellEffect, Integer> effectSettings) {
         effects.clear();
+        effects.put(62, new VictoryEffect());
 
         for (Map.Entry<CellEffect, Integer> entry : effectSettings.entrySet()) {
             CellEffect effect = entry.getKey();
@@ -21,7 +23,7 @@ public class CellEffectManager {
     private static void addRandomEffects(int count, CellEffect effect) {
         Set<Integer> uniquePositions = new HashSet<>();
         while (uniquePositions.size() < count) {
-            int pos = random.nextInt(1, 62);
+            int pos = random.nextInt(5, 61);
             if (!uniquePositions.contains(pos) && !effects.containsKey(pos)) {
                 uniquePositions.add(pos);
                 effects.put(pos, effect);

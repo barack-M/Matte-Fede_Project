@@ -1,24 +1,20 @@
 package org.giocodelloca;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
-public class MainController {
-    private static MainController instance;
+public class GameController {
+    private static GameController instance;
     @FXML
     public Label cellEffectLabel;
     public int[][] snailPath = {
@@ -44,7 +40,7 @@ public class MainController {
     private int turn;
     public List<Player> players;
 
-    public static MainController getInstance() {
+    public static GameController getInstance() {
         return instance;
     }
 
@@ -116,22 +112,6 @@ public class MainController {
             nextPlayer.stuck--;
             diceResultLabel.setText("");
             cellEffectLabel.setText("Casella " + nextPlayer.getPosition() + ": salti questo turno");
-        }
-    }
-
-    public void victory(Player winner){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Vittoria!");
-        alert.setHeaderText(null);
-        alert.setContentText(winner.getName() + " ha vinto il gioco! Complimenti!");
-
-        ButtonType buttonExit = new ButtonType("Esci dal gioco");
-        alert.getButtonTypes().setAll(buttonExit);
-
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent() && result.get() == buttonExit) {
-            Platform.exit();
         }
     }
 }
